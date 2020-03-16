@@ -1,0 +1,4 @@
+include dig_sig/schema.sql
+graft dig_sig/static
+graft dig_sig/templates
+global-exclude *.pyc
