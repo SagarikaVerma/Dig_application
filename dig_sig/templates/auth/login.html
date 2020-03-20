@@ -1,15 +1,35 @@
-{% extends 'base.html' %}
-
 {% block header %}
+<header>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <h1>{% block title %}Log In{% endblock %}</h1>
-{% endblock %}
+  <style>
+		h3{
+			color: red;
+			font-family: Times New Roman;
+			height: 40px;
+			width: 250px;
+			border-bottom: 1px solid red;
+		}
 
+		body{
+			padding-top: 100px;
+			padding-bottom: 70px;
+			padding-left: 450px;
+			padding-right: 450px;		
+		}
+	</style>
+</header>
+{% endblock %}
 {% block content %}
   <form method="post">
+  	<div class="form-group">
     <label for="username">Username</label>
     <input name="username" id="username" required>
+    <br>
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
+    <br>
+    <input class="btn btn-primary btn-lg active" type="submit" role="btn"value="Log In">
   </form>
+</div>
 {% endblock %}
