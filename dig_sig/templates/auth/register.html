@@ -1,11 +1,11 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html>
-
-  
-
 {% block header %}
 <header>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	<h1>{% block title %}Register{% endblock %}</h1>
 	<br>
 	<style>
@@ -29,9 +29,9 @@
 	</style>
 </header>
 {% endblock %}
-<body>
 	{% block content %}
 	<form method="post">
+		<body>
   <div class="form-group">
  	  	<div class="container">
   		<label for="firstname">Firstname </label>
