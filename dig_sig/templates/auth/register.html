@@ -4,12 +4,13 @@
 {% block header %}
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	<h1>{% block title %}Register{% endblock %}</h1>
 	<br>
 	<style>
-		h3{
+		.h3{
 			color: red;
 			font-family: Times New Roman;
 			height: 40px;
@@ -17,12 +18,12 @@
 			border-bottom: 1px solid red;
 		}
 
-		body{
+		.body{
 			padding-top: 100px;
 			padding-bottom: 70px;
 			padding-left: 450px;
 			padding-right: 450px;
-			background-image: url(image/a.jpg);
+			background-image: url(static/img/a.jpg);
 			
 			background-size: cover;
 		}
