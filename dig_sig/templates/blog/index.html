@@ -14,31 +14,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
-  
 </header>
 {%block content%}
 <body>
-    <form>
-        <div id="card">
-  <div class=" text-center" >
+    <form  method="post">
       
-      <div class="card-body">
+         
+      <div id="card" class="card-body">
       <h5 class="card-title">New Application</h5>
-      <p class="card-text">To apply new letter please click the button</p>
-      <button class="btn btn-primary btn-lg active" id="btn_1""value="Apply Now">Apply Now</button>
+      <p class="card-text">To apply new letter please click the button.</p>
 
-      </div>
-
-      <br>
-      <br>
      
-      <div class="card-body">
-      <h5 class="card-title">Pending Applications</h5>
-      <p class="card-text">Check Pending Applications</p>
-      <button class="btn btn-primary btn-lg active" id="btn_2" type="submit" role="button"value="Check Now">Check Now</button>
+   
+      <button type="button" id="btn_1" value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.create') }}';">Apply Now</button>
+
       </div>
-    </div>
-  </div>
+   
+    
+    
+      <br>
+      <br>
+      
+      <div id="card1" class="card-body">
+      <h5 class="card-title">Pending Applications</h5>
+      <p class="card-text">Check Pending Applications.</p>
+      <button id="btn_2" type="button" value="Check Now" onclick="window.location.href='{{ url_for( 'blog.home') }}';">Check Now</button>
+      </div>
+    </form>
   {%endblock%}
 </body>
 </html>
