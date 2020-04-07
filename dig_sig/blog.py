@@ -5,6 +5,8 @@ from werkzeug.exceptions import abort
 
 from dig_sig.auth import login_required
 from dig_sig.db import get_db
+from dig_sig.en_de import encrypt_image
+
 
 bp = Blueprint('blog', __name__)
 
@@ -69,12 +71,12 @@ def update(id):
     post = get_post(id)
 
     if request.method == 'POST':
-        title = request.form['title']
+        to = request.form['to']
         body = request.form['body']
         error = None
 
-        if not title:
-            error = 'Title is required.'
+        if not to:
+            error = 'to is required.'
 
         if error is not None:
             flash(error)
@@ -90,6 +92,33 @@ def update(id):
 
     return render_template('blog/update.html', post=post)
 
+
+@bp.route('/<int:id>/view', methods=('GET', 'POST'))
+@login_required
+def view(id):
+    post = get_post(id)
+
+    if request.method == 'POST':
+        to = request.form['to']
+        body = request.form['body']
+        error = None
+
+        if not to:
+            error = 'to is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE post SET title = ?, body = ?'
+                ' WHERE id = ?',
+                (title, body, id)
+            )
+            db.commit()
+            return redirect(url_for('blog.index'))
+
+    return render_template('blog/update.html', post=post)
 
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
