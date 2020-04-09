@@ -2,10 +2,14 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-
+from werkzeug.utils import secure_filename
 from dig_sig.auth import login_required
 from dig_sig.db import get_db
 from dig_sig.en_de import encrypt_image
+import os
+
+# UPLOAD_FOLDER = "\uploads"
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 bp = Blueprint('blog', __name__)
@@ -118,7 +122,27 @@ def view(id):
             db.commit()
             return redirect(url_for('blog.index'))
 
-    return render_template('blog/update.html', post=post)
+    return render_template('blog/view.html', post=post)
+
+@bp.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+        f = request.files['file']
+        print(os.getcwd())
+        os.chdir("D:\\Dig_application\\uploads") 
+        print(os.getcwd())
+        f.save(f.filename)
+        os.chdir("D:\\Dig_application") 
+        print(os.getcwd())
+        return 'file uploaded successfully' 
+
+@bp.route('/signatories',methods=('GET','POST'))
+def signatories():
+    return render_template('blog/signatories.html')
+
+@bp.route('/signatories1',methods=('GET','POST'))
+def signatories1():
+    return render_template('blog/signatories1.html')
 
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required

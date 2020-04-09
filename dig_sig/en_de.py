@@ -6,6 +6,7 @@ from cryptography.fernet import Fernet
 bp = Blueprint('en_de', __name__)
 
 def encrypt_image():
+	key = Fernet.generate_key()
 	file=open('key.key','rb')
 	key=file.read()
 	file.close()

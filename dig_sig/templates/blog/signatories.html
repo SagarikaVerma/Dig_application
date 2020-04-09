@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<header>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</header>
+{% endblock %}
+{% block content %}
+<body>
+  <div class="image-upload-wrap">
+  <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+  <div class="file-upload-content">
+    <img class="file-upload-image" src="#"/>
+    <div class="image-title-wrap">
+    </div>
+  </div>
+
+</div>
+<br>
+    <button type="button" id="btn_1" value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.home') }}';">Submit</button>
+    
+</br>
+</body>
+{% endblock %}

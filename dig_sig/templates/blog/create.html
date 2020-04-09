@@ -11,6 +11,7 @@
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
     <input type="submit" value="Save">
+    <button type="button" id="btn_1" value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.signatories1') }}';">Add Signatories</button>
   </form>
 {% endblock %}
 

@@ -9,9 +9,15 @@
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
     <input type="submit" value="Save">
-  </form>
+
   <hr>
-  <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
+<!--   <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
     <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
-  
+
+</form> -->
+   <form action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
+       <input type = "file" name = "file" />
+       <input type = "submit"/>
+   </form>  
 {% endblock %}
+
