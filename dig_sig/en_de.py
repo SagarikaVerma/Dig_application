@@ -5,13 +5,10 @@ from werkzeug.exceptions import abort
 from cryptography.fernet import Fernet
 bp = Blueprint('en_de', __name__)
 
-def encrypt_image():
+def encrypt_image(image_path):
 	key = Fernet.generate_key()
-	file=open('key.key','rb')
-	key=file.read()
-	file.close()
-
-	in_file='buffer.jpg'
+	
+	in_file=image_path
 	out_file='test.encrypted'
 
 	with open(in_file,'rb') as fo:
@@ -22,23 +19,23 @@ def encrypt_image():
 
 	with open(out_file, 'wb') as f:
 		f.write(encrypted)
+	print (key)
+	return key
 
-def decrypt_image():
-	file = open('key.key', 'rb')
-	key = file.read() # The key will be type bytes
-	file.close()
-
+def decrypt_image(de_key):
 	input_file = 'test.encrypted'
-	output_file = 'dec2.jpg'
+	output_file = 'dec2.png'
 
 	with open(input_file, 'rb') as f:
- 	   data = f.read()
+		data = f.read()
 
-	fernet = Fernet(key)
+	fernet = Fernet(de_key)
 	encrypted = fernet.decrypt(data)
 
 	with open(output_file, 'wb') as f:
-   		f.write(encrypted)
+		f.write(encrypted)
+
+	print("Done")
 
 def encrypt_data():
 	key = Fernet.generate_key()
