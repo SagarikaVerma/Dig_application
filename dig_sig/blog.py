@@ -110,7 +110,7 @@ def upload_file():
    if request.method == 'POST':
         f = request.files['file']
         print(os.getcwd())
-        key=encrypt_image("D:/Dig_application/uploads/signature.png")
+        key=g("D:/Dig_application/uploads/signature.png")
         print("Encrypted the image")
         decrypt_image(key)
         print("Decrypted The image")
@@ -155,6 +155,6 @@ def signatories1():
 def delete(id):
     get_post(id)
     db = get_db()
-    db.execute('DELETE FROM post WHERE id = ?', (id,))
+    db.execute('DELETE FROM application_data WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))

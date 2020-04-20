@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html>
 {% block header %}
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-
-	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	<h1>{% block title %}Register{% endblock %}</h1>
-	<br>
+	
+	<div class="container" align="center"><h3>{% block title %}Register{% endblock %}</h3></div>
+	
 	<style>
 		.h3{
 			color: red;
@@ -18,21 +14,13 @@
 			border-bottom: 1px solid red;
 		}
 
-		.body{
-			padding-top: 100px;
-			padding-bottom: 70px;
-			padding-left: 450px;
-			padding-right: 450px;
-			background-image: url(static/img/a.jpg);
-			
-			background-size: cover;
 		}
 	</style>
 </header>
 {% endblock %}
 	{% block content %}
 	<form method="post">
-		<body>
+	
   <div class="form-group">
  	  	<div class="container">
   		<label for="firstname">Firstname </label>
@@ -57,5 +45,3 @@
 
 </form>
 {% endblock %}
-</body>
-</html>

@@ -3,10 +3,9 @@
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- styles -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-	
-  <h1>{% block title %}Log In{% endblock %}</h1>
+
+	<div class="container" align="center"><h3>{% block title %}Log In{% endblock %}</h3></div>
+  
   <style>
 		.h3{
 			color: red;
@@ -16,25 +15,22 @@
 			border-bottom: 1px solid red;
 		}
 
-		.body{
-			padding-top: 100px;
-			padding-bottom: 70px;
-			padding-left: 450px;
-			padding-right: 450px;		
-		}
+		
 	</style>
 </header>
 {% endblock %}
 {% block content %}
   <form method="post">
-  	<div class="form-group">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
+        <div class="container" align="center">
+    <div class="col-lg-3 col-sm-4">
+      <div class="form-group has-default">
+      <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">
+      <br>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
     <br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <br>
-    <input class="btn btn-primary btn-lg active" type="submit" role="btn"value="Log In">
-  </form>
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="Log In">Login</button>
+      </div>
+    </div>
+    </form>
 </div>
 {% endblock %}

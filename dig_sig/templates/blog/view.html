@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}View "{{ post['title'] }}"{% endblock %}</h1>
+  <h1>{% block title %}View {% endblock %}</h1>
 {% endblock %}
-
+<br>
 {% block content %}
-    <label name="to">{{request.form['to'] or post['to']}}</label>
-    <label for="body">Body</label>
+    <label name="to">{{request.form['title'] or post['to']}}</label>
+    <br>
+    <label for="t">To </label>
+    <br>
+    <br>
+    <label for="t">Head of Department</label>
+      <br>
+    <br>
+   <label for="date">Date </label>
+      <br>
+    <br>
+    <label for="body">Subject:- </label>
+    <br>
+    <br>
     <label name="data" id="1">{{ request.form['body'] or post['body'] }}</label>
+   <br>
+   <br> 
+
     <input type="submit" value="Save">
 
   <hr>
@@ -17,7 +32,7 @@
 </form> -->
    <form action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
        <input type = "file" name = "file" />
-       <input type = "submit"/>
+              <input type = "submit"/>
    </form>  
 {% endblock %}
 
