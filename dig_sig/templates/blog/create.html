@@ -1,17 +1,57 @@
 {% extends 'base.html' %}
-
 {% block header %}
-  <h1>{% block title %}New Letter{% endblock %}</h1>
+<header>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- styles -->
+
+	<div class="container" align="center"><h3>{% block title %}New Letter{% endblock %}</h3></div>
+  
+  <style>
+		.h3{
+			color: red;
+			font-family: Times New Roman;
+			height: 40px;
+			width: 250px;
+			border-bottom: 1px solid red;
+		}
+
+		
+	</style>
+</header>
+{% endblock %}
+{% block content %}
+<form method="post">
+  <div class="container" align="center">
+<div class="col-lg-3 col-sm-4">
+<div class="form-group has-default">
+<input type="text" name="to" id="to" class="form-control" placeholder="Addressed To" required>
+<br>
+<input type="text" name="body" id="body" class="form-control" placeholder="Matter" required>
+<br>
+<button class="btn btn-primary btn-round" type="submit" role="btn_1"value="Apply Now" onclick="window.open='{{ url_for(blog.signatories1) }}'">Add Signatories</button>
+</div>
+</div>
+</form>
+</div>
 {% endblock %}
 
-{% block content %}
-  <form method="post">
-    <label for="to">To</label>
-    <input name="to" id="to" value="{{ request.form['to'] }}" required>
-    <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
-    <input type="submit" value="Save">
-    <button type="button" id="btn_1" value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.signatories1') }}';">Add Signatories</button>
-  </form>
-{% endblock %}
+<!--<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</header>
+
+<form method="post">
+  <div class="container" align="center">
+<div class="col-lg-3 col-sm-4">
+<div class="form-group has-default">
+<input type="text" name="to" id="to" class="form-control" placeholder="Addressed To" required>
+<br>
+<input type="text" name="body" id="body" class="form-control" placeholder="Matter" required>
+<br>
+<button class="btn btn-primary btn-round" type="button" role="btn_1"value="Apply Now" href="{{ url_for('blog.signatories1') }}"></button>
+</div>
+</div>
+</form>
+</div>
+s -->
 
