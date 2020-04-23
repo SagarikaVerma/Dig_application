@@ -1,35 +1,45 @@
 {% extends 'base.html' %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 {% block header %}
-  <h1>{% block title %}Applications{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('blog.create') }}">New</a>
-  {% endif %}
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- styles -->
+
+  <div class="container" align="center"><h3>{% block title %}Applications{% endblock %}</h3></div>
+  
+</header>
 {% endblock %}
-
+<body>
 {% block content %}
-  {% for post in posts %}
+{% for application_data in applicationdata %}
+ <div class="container">
     <form class="post">
-        <div class="container" align="center">
-          <div class="col-lg-3 col-sm-4">
+       
+         
       <div class="form-group has-default">
-          <h1>{{ post['title'] }}</h1>
-          <div class="about" align="center">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        <div class="row">
+          <h4>{{ application_data['title'] }}</h4>
+        </div>
+          <div class="row">
+          <div class="about">by {{ application_data['username'] }} on {{ application_data['created'].strftime('%Y-%m-%d') }}</div>
         
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-          <a class="action" href="{{ url_for('blog.view', id=post['id']) }}">View</a>
-
+        {% if g.user['id'] == application_data['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=application_data['id']) }}">Edit</a>
+          <a class="action" href="{{ url_for('blog.view', id=application_data['id']) }}">View</a>
+        </div>
         {% endif %}
-      <p class="body">{{ post['body'] }}</p>
+        <div class="row">
+      <p class="body">{{ application_data['body'] }}</p>
       </div>
-      </div>
-      </div>
+      
+    </div>
+
+     
     </form>
+  </div>
     {% if not loop.last %}
       <hr>
     {% endif %}
   {% endfor %}
 {% endblock %}
+</body>
