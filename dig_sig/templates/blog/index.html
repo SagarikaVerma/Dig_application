@@ -18,13 +18,23 @@
 {%block content%}
 <body>
     <form  method="post">
+      
+         
       <div id="card" class="card-body">
       <h5 class="card-title">New Application</h5>
       <p class="card-text">To apply new letter please click the button.</p>
+
+     
+   
       <button type="button" id="btn_1" value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.create') }}';">Apply Now</button>
+
       </div>
+   
+    
+    
       <br>
       <br>
+      
       <div id="card1" class="card-body">
       <h5 class="card-title">Pending Applications</h5>
       <p class="card-text">Check Pending Applications.</p>
