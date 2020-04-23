@@ -17,12 +17,12 @@ bp = Blueprint('blog', __name__)
 @bp.route('/home')
 def home():
     db = get_db()
-    applicationdata = db.execute(
+    posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM application_data p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/home.html', applicationdata=applicationdata)
+    return render_template('blog/home.html', posts=posts)
 
 @bp.route('/', methods=('GET', 'POST'))
 def index():
@@ -110,13 +110,15 @@ def upload_file():
    if request.method == 'POST':
         f = request.files['file']
         print(os.getcwd())
-        os.chdir("D:\\Dig_application\\uploads") 
-        f.save(f.filename)
-        os.chdir("D:/Dig_application") 
-        key=encrypt_image("D:/Dig_application/uploads/signature.png")
+        key=g("D:/Dig_application/uploads/signature.png")
         print("Encrypted the image")
         decrypt_image(key)
         print("Decrypted The image")
+        os.chdir("D:/Dig_application/uploads") 
+        print(os.getcwd()) 
+        f.save(f.filename)
+        os.chdir("D:/Dig_application") 
+        print(os.getcwd())
         return 'file uploaded successfully' 
 
 @bp.route('/signatories',methods=('GET','POST'))
