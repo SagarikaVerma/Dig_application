@@ -6,19 +6,9 @@
 
 	<div class="container" align="center"><h3>{% block title %}New Letter{% endblock %}</h3></div>
   
-  <style>
-		.h3{
-			color: red;
-			font-family: Times New Roman;
-			height: 40px;
-			width: 250px;
-			border-bottom: 1px solid red;
-		}
-
-		
-	</style>
 </header>
 {% endblock %}
+<body>
 {% block content %}
 <form method="post">
   <div class="container" align="center">
@@ -26,14 +16,16 @@
 <div class="form-group has-default">
 <input type="text" name="to" id="to" class="form-control" placeholder="Addressed To" required>
 <br>
-<input type="text" name="body" id="body" class="form-control" placeholder="Matter" required>
+<textarea type="text" name="body" id="body" class="form-control" wrap="physical" placeholder="Matter" required></textarea>
 <br>
-<button class="btn btn-primary btn-round" type="submit" role="btn_1"value="Apply Now" onclick="window.open='{{ url_for(blog.signatories1) }}'">Add Signatories</button>
+<button class="btn btn-primary btn-round" type="submit" role="btn_1"value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.signatories1') }}';">Add Signatories</button>
+</div>
 </div>
 </div>
 </form>
-</div>
+
 {% endblock %}
+</body>
 
 <!--<header>
   <meta name="viewport" content="width=device-width, initial-scale=1">
