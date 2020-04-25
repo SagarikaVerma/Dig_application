@@ -1,3 +1,57 @@
+
+      <!--         inverse navbar with notifications     -->
+         
+<html>
+ <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="{{ url_for('static', filename='css/material-kit.css') }}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{{ url_for('static', filename='css/demo.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/vertical-nav.css') }}" rel="stylesheet" />
+
+          <nav class="navbar navbar-inverse navbar-expand-lg bg-dark" role="navigation-demo">
+            <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-translate">
+                <a class="navbar-brand"><b>Digital Application System</b></a>
+           
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                  <!--
+                 {% if g.user %}
+                    <li class="nav-item">{{ g.user['username'] }}
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                  {% else %}
+                    <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                   <a href="{{ url_for('auth.login') }}">Log In</a>
+                  {% endif %}
+                 --> 
+
+                   {% if g.user %}
+                 <li class="nav-item"><span>{{ g.user['username'] }}&nbsp;&nbsp;&nbsp;</span>
+                   <li><a class="nav-link" href="{{ url_for('auth.logout') }}"><b>Log Out</b></a>
+                      
+                  {% else %}
+                  <li class="nav-item">
+                    <a href="{{ url_for('auth.login') }}" class="nav-link"><b>Login&nbsp;</b></a>
+                  <li class="nav-item">
+                    <a href="{{ url_for('auth.register') }}" class="nav-link"><b>Sign Up&nbsp;</b></a>
+                  {% endif %}
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-->
+          </nav>
+
+<!--
 <!doctype html>
 <title>{% block title %}{% endblock %} - Dig_Signature</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -21,4 +75,4 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
-</section>
+</section> -->
