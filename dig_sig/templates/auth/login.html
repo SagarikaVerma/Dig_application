@@ -3,24 +3,34 @@
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- styles -->
-
-	<div class="container" align="center"><h3>{% block title %}Log In{% endblock %}</h3></div>
+  <br>
+  <br>
+  <br>
+  <br>
+	<div class="container" align="center"><h3><b>{% block title %}Log In{% endblock %}</b></h3></div>
 </header>
+
 
 {% endblock %}
 {% block content %}
+<body>
+
   <form method="post">
         <div class="container" align="center">
     <div class="col-lg-3 col-sm-4">
       <div class="form-group has-default">
+        <br>
       <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">
       <br>
     <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
+    <br>
     <br>
     <button class="btn btn-primary btn-round" type="submit" role="btn"value="Log In">Login</button>
       </div>
     </div>
     </div>
     </form>
+
+</body>
 
 {% endblock %}

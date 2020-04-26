@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- styles -->
 
-  <div class="container" align="center"><h3>{% block title %}Applications{% endblock %}</h3></div>
+  <div class="container" align="center"><h3><b>{% block title %}Applications{% endblock %}</b></h3></div>
   
 </header>
+<style type="text/css">
+  div.relative {
+  position: relative;
+  left: 800px;
+}
+</style>
 {% endblock %}
 <body>
 {% block content %}
@@ -18,14 +24,17 @@
          
       <div class="form-group has-default">
         <div class="row">
-          <h4>{{ application_data['title'] }}</h4>
+          <h4><b>{{ application_data['title'] }}</b></h4>
         </div>
           <div class="row">
-          <div class="about">by {{ application_data['username'] }} on {{ application_data['created'].strftime('%Y-%m-%d') }}</div>
+          <div class="about">by <b>{{ application_data['username'] }}</b> on<b> {{ application_data['created'].strftime('%Y-%m-%d') }}</b></div>
         
         {% if g.user['id'] == application_data['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=application_data['id']) }}">Edit</a>
-          <a class="action" href="{{ url_for('blog.view', id=application_data['id']) }}">View</a>
+        
+      <div class="relative">
+          <a class="action" float="right" href="{{ url_for('blog.update', id=application_data['id']) }}">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+          <a class="action" href="{{ url_for('blog.view', id=application_data['id']) }}">&nbsp;&nbsp;&nbsp;View</a>
+      </div>
         </div>
         {% endif %}
         <div class="row">

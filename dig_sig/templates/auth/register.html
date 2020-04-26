@@ -3,8 +3,10 @@
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- styles -->
-
-	<div class="container" align="center"><h3>{% block title %}Register{% endblock %}</h3></div>
+  <br>
+  <br>
+  <br>
+	<div class="container" align="center"><h3><b>{% block title %}Register{% endblock %}</b></h3></div>
 </header>
 {% endblock %}
 {% block content %}
@@ -12,13 +14,15 @@
         <div class="container" align="center">
     <div class="col-lg-3 col-sm-4">
       <div class="form-group has-default">
-      <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter Firstname" required>
+        <br>
+      <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter Name" required>
       <br>
-    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Enter Lastname" required>
+    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Enter Mail Id" required>
 	<br>
 	<input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>
       <br>
     <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
+    <br>
     <br>
     <button class="btn btn-primary btn-round" type="submit" role="btn"value="Register">Register</button>
       </div>

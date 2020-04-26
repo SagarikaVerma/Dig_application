@@ -2,28 +2,182 @@
 {% block header %}
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- styles -->
-
-	<div class="container" align="center"><h3>{% block title %}New Letter{% endblock %}</h3></div>
+	<script type="text/javascript" src="create.js"></script>
+	<div class="container" align="center"><h3><b>{% block title %}New Letter{% endblock %}</b></h3></div>
   
 </header>
+<SCRIPT language="javascript">
+		function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var colCount = table.rows[0].cells.length;
+
+			for(var i=0; i<colCount; i++) {
+
+				var newcell	= row.insertCell(i);
+
+				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "checkbox":
+							newcell.childNodes[0].checked = false;
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+				}
+			}
+		}
+
+		function deleteRow(tableID) {
+			try {
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];
+				if(null != chkbox && true == chkbox.checked) {
+					if(rowCount <= 1) {
+						alert("Cannot delete all the rows.");
+						break;
+					}
+					table.deleteRow(i);
+					rowCount--;
+					i--;
+				}
+
+
+			}
+			}catch(e) {
+				alert(e);
+			}
+		}
+
+	</SCRIPT>
+
 {% endblock %}
 <body>
 {% block content %}
+
 <form method="post">
   <div class="container" align="center">
-<div class="col-lg-3 col-sm-4">
 <div class="form-group has-default">
 <input type="text" name="to" id="to" class="form-control" placeholder="Addressed To" required>
 <br>
-<textarea type="text" name="body" id="body" class="form-control" wrap="physical" placeholder="Matter" required></textarea>
+<input type="text" id="desi" class="form-control" placeholder="Designation" required>
 <br>
-<button class="btn btn-primary btn-round" type="submit" role="btn_1"value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.signatories1') }}';">Add Signatories</button>
+<input type="text" id="insti" class="form-control" placeholder="Institute" required>
+<br>
+<input type="text" id="sub" class="form-control" placeholder="Subject" required>
+<br>
+<textarea type="text" name="body" id="body" class="form-control" rows="10px" wrap="physical" placeholder="Matter" required></textarea>
+<br>
+<br>
+
+
+<div class="container" align="center"><h3>ADD SIGNATORIES</h3></div>
 </div>
+
+<!--
+<div class="row">
+<div class="col-md-12">
+<button type="button" onclick="addRow('dataTable')"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Add Row</button>
+
+<button type="button" onclick="deleteRow('dataTable')"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+
+
+    <TABLE id="Table" width="350px" border="1">
+
+		<thead>
+                      <tr>
+                        <th class="text-center">#</th>
+                        <th>Name</th>
+                        <th>Destination</th>
+                        <th>Institute</th>
+                        <th>Email</th>
+                        
+                      </tr>
+        </thead>
+    </TABLE>
+	<TABLE id="dataTable" width="350px" border="1">
+
+		
+		<TR>
+			<TD><INPUT type="checkbox" name="chk"/></TD>
+			<TD><INPUT type="text" name="txt"/></TD>
+			<TD><INPUT type="text" name="txt"/></TD>
+			<TD><INPUT type="text" name="txt"/></TD>
+			<TD><INPUT type="text" name="txt"/></TD>
+		</TR>
+
+
+	</TABLE>
 </div>
 </div>
 </form>
+-->
 
+
+
+<!-- Editable table -->
+<div class="card">
+  
+  <div class="card-body" >
+  	<div class="container" align="left">
+  	<button type="button" onclick="addRow('dataTable')"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Add Row</button>
+    </div>
+    <br>
+    <br>
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+          	<th class="text-center">#</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Destination</th>
+            <th class="text-center">Institute</th>
+            <th class="text-center">Email</th>
+          </tr>
+        </thead>
+        <tbody  id="dataTable">
+          <tr>
+          	<TD><INPUT type="checkbox" name="chk"/></TD>
+            <td class="pt-3-half" contenteditable="true">Neha</td>
+            <td class="pt-3-half" contenteditable="true">abc</td>
+            <td class="pt-3-half" contenteditable="true">CSE</td>
+            <td class="pt-3-half" contenteditable="true">neha19@gmail.com</td>
+            <td>
+              <span class="table-remove"><button type="button" onclick="deleteRow('dataTable')"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container" align="center">
+<button class="btn btn-primary btn-round" type="submit" role="btn_1"value="Apply Now" onclick="window.location.href='{{ url_for( 'blog.signatories1') }}';">Submit</button>
+
+</div>
+</div>
+</form>
 {% endblock %}
 </body>
 
