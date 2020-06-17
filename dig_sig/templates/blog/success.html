@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- styles -->
+
+  <div class="container" align="center"><h3><b>{% block title %}View Application{% endblock %}</b></h3></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+
+  
+</header>
+<style type="text/css">
+  label {
+    
+    color: #555;
+    display: block;
+    
+}
+</style>
+{% endblock %}
+<body>
+{% block content %}
+ <p>File uploaded successfully</p>  
+<p>File Name: {{name}}</p>  
+
+{% endblock %}
+</body>

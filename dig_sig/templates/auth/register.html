@@ -2,9 +2,19 @@
 {% block header %}
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
 	<!-- styles -->
 
+
 	<div class="container" align="center"><h3>{% block title %}Register{% endblock %}</h3></div>
+
+  <br>
+  <br>
+  <br>
+	<div class="container" align="center"><h3><b>{% block title %}Register{% endblock %}</b></h3></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+
+
 </header>
 {% endblock %}
 {% block content %}
@@ -20,9 +30,50 @@
       <br>
     <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
     <br>
+
+    <br>
+    </form>
+
+
+    <form id="form1" runat="server" >
+    
+    <input type="file" id="imgInp" class="btn" />
+    <br>
+    <br>
+    <img id="blah" src="#" width="260px" height="160px" alt="your image" />
+    <br>
+    <br>
+    <!--<input type = "submit"/>-->
+   
+  </form>
+  <script>
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#imgInp").change(function() {
+      readURL(this);
+      alert(this.value);
+    });
+  </script> 
+   
+
+
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="generate key">Generate Key</button>
+    <br>
+    <br>
+
     <button class="btn btn-primary btn-round" type="submit" role="btn"value="Register">Register</button>
+    
       </div>
     </div>
-    </form>
+    
 </div>
 {% endblock %}
