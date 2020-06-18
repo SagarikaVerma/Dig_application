@@ -61,7 +61,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('blog.index'))
 
         flash(error)
 
@@ -81,7 +81,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('hello'))
+    return redirect(url_for('auth.login'))
 
 
 def login_required(view):
@@ -93,3 +93,11 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+@bp.route('/register_sign',methods=('GET','POST'))
+def register_sign():
+    return render_template('auth/register_sign.html')
+
+@bp.route('/login_sign',methods=('GET','POST'))
+def login_sign():
+    return render_template('auth/login_sign.html')

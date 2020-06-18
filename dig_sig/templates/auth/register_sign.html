@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+	<!-- styles -->
+
+  <br>
+  <br>
+  <br>
+	<div class="container" align="center"><h3><b>{% block title %}Signatory Register{% endblock %}</b></h3></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+
+
+</header>
+{% endblock %}
+{% block content %}
+  <form method="post">
+        <div class="container" align="center">
+    <div class="col-lg-3 col-sm-4">
+      <div class="form-group has-default">
+      <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter Firstname" required>
+      <br>
+    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Enter Lastname" required>
+	<br>
+	<input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>
+      <br>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
+    <br>
+
+    <br>
+    </form>
+
+<!--
+    <form id="form1" runat="server" >
+    
+    <input type="file" id="imgInp" class="btn" />
+    <br>
+    <br>
+    <img id="blah" src="#" width="260px" height="160px" alt="your image" />
+    <br>
+    <br>
+    
+   
+  </form>
+  <script>
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#imgInp").change(function() {
+      readURL(this);
+      alert(this.value);
+    });
+  </script> 
+   
+
+
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="generate key">Generate Key</button>
+    <br>
+    <br>
+  -->
+
+    <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Click here to Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+<script>
+var loadFile = function(event) {
+  var image = document.getElementById('output');
+  image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+<button class="btn btn-primary btn-round" type="submit" role="btn" value="submit">Generate Key</button>
+    
+
+
+
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="Register" onclick="window.location.href='{{ url_for( 'auth.login_sign') }}';">Register</button>
+    <p><h4>OR</h4></p>
+    
+      </div>
+    </div>
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="login" onclick="window.location.href='{{ url_for( 'auth.login_sign') }}';">Login</button>
+</div>
+{% endblock %}

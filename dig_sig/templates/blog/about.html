@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- styles -->
+  <style type="text/css">
+    
+  </style>
+</header>
+
+{% endblock %}
+{% block content %}
+  <form method="post">
+    <div class="container" align="center">
+    <div class="col-lg-9 col-sm-11">
+      <div class="container" align="center">
+    <p style="color:#00659c;font-size:30px;font-family:verdana;"><b>About the System</b></p>
+  </div>
+      <br>
+      <div class="container" align="left">
+      <p>The purpose of this system is to make the processing of the application easier and less tedious, with enhanced security and automate some common features.</p>
+      <p>The UI of the application is user-friendly and guides the user through the process.</p>
+      <p>The signatures uploaded on the server are encrypted and can only be decrypted using the same key.</p>
+      <p>The subject is automatically predicted, hence the user doesn’t have to worry about it. It also has a feature to check appropriate grammar of the application.</p>
+      <br>
+      <br>
+      <br>
+    </div>
+    <div class="container" align="center">
+      <p style="color:#00659c;font-size:30px;font-family:verdana;"><b>Guidelines:</b></p>
+      <br>
+    </div>
+    <div class="container" align="left">
+      <p><b>For the user:</b></p>
+      <p>STEP 1: Sign up using your Email ID and password.<br>
+      STEP 2: Log in using the credentials.<br>
+      STEP 3: Click on create a new application.<br>
+      STEP 4: Enter the data for the application.<br>
+      STEP 5: Click on Submit.</p>
+
+      <p><b>For the signatory:</b></p>
+      <p>STEP 1: Sign up using your Email ID and password.<br>
+          STEP 2: Submit your Signature.<br>
+          STEP 3: Click "Generate Key", a key will appear in the popup, copy it.<br>
+          (NOTE:The key will be used in future to sign any application)<br>
+          STEP 4: Click on Register.<br>
+          STEP 5: Check pending applications by clicking the Pending Applications button.<br>
+          STEP 6: Select an application for signing.<br>
+          STEP 7: Type or enter the key above your name in the application.<br>
+          STEP 8: Click on Submit.</p>
+
+        <br>
+        <br>
+        <br>
+      </div>
+
+    <!--<button class="btn btn-primary btn-round" type="submit" role="btn"value="Log In">User Login</button>
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="Log In">Signatory Login</button>-->
+
+    <div class="row ml-auto mr-auto">
+
+   <div class="card-body">
+      <h5 class="card-title">Applicants</h5>
+      <button class="btn btn-primary btn-round" type="button" id="btn_1" value="Apply Now" onclick="window.location.href='{{ url_for( 'auth.register') }}';">Applicant Register</button>
+      <h5 class="card-title">Signatories</h5>
+      <button class="btn btn-primary btn-round" id="btn_2" type="button" value="Check Now" onclick="window.location.href='{{ url_for( 'auth.register_sign') }}';">Signatory Register</button>
+      </div>
+   </div>
+
+      </div>
+    </div>
+    </div>
+    </form>
+
+{% endblock %}

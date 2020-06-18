@@ -1,7 +1,10 @@
 import os
 
 from flask import Flask
-
+from flask import Flask, render_template, request
+from flask_mail import Mail
+import json
+from datetime import datetime
 
 def create_app(test_config=None):
     # create and configure the app
@@ -45,3 +48,6 @@ def create_app(test_config=None):
     from . import en_de
     app.register_blueprint(en_de.bp)
     return app
+
+
+

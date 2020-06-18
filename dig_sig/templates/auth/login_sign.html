@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- styles -->
 
-	<div class="container" align="center"><h3>{% block title %}Log In{% endblock %}</h3></div>
+	<div class="container" align="center"><h3>{% block title %}Log In...{% endblock %}</h3></div>
 </header>
 
 {% endblock %}
@@ -17,7 +17,7 @@
       <br>
     <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
     <br>
-    <button class="btn btn-primary btn-round" type="submit" role="btn"value="Log In" onclick="window.location.href='{{ url_for( 'blog.index') }}';">Login</button>
+    <button class="btn btn-primary btn-round" type="submit" role="btn"value="Log In" onclick="window.location.href='{{ url_for( 'blog.index_sign') }}';">Login</button>
       </div>
     </div>
     </div>

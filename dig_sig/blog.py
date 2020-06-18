@@ -24,7 +24,7 @@ def home():
     ).fetchall()
     return render_template('blog/home.html', applicationdata=applicationdata)
 
-@bp.route('/', methods=('GET', 'POST'))
+@bp.route('/dashboard', methods=('GET', 'POST'))
 def index():
     return render_template('blog/index.html')
 
@@ -156,3 +156,15 @@ def delete(id):
     db.execute('DELETE FROM application_data WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+@bp.route('/',methods=('GET','POST'))
+def about():
+    return render_template('blog/about.html')
+
+@bp.route('/home_sign',methods=('GET','POST'))
+def home_sign():
+    return render_template('blog/home_sign.html')
+
+@bp.route('/index_sign',methods=('GET','POST'))
+def index_sign():
+    return render_template('blog/index_sign.html')

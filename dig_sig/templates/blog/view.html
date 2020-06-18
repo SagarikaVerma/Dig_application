@@ -14,28 +14,30 @@
  <div class="container">
     <div class="card">
      <div class="card-body">
-       <label name="to">{{request.form['title'] or post['to']}}</label>
+       <label style="color:#00659c;" name="to">{{request.form['title'] or post['to']}}</label>
         <br>
-        <label for="t">To </label>
+        <label style="color:#00659c;" for="t">To </label>
         <br>
         <br>
-        <label for="t">Head of Department</label>
+        <label style="color:#00659c;" for="t">Head of Department</label>
           <br>
         <br>
-       <label for="date">Date </label>
+       <label style="color:#00659c;" for="date">Date </label>
           <br>
         <br>
-        <label for="body">Subject:- </label>
+        <label style="color:#00659c;" for="body">Subject </label>
         <br>
         <br>
-        <label name="data" id="1">{{ request.form['body'] or post['body'] }}</label>
+        <label style="color:#00659c;" name="data" id="1">{{ request.form['body'] or post['body'] }}</label>
        <br>
        <br> 
-       <form action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
-       <input type = "file" name = "file" />
-              <input type = "submit"/>
-   </form>  
-   
+       
+<input type="text" name="to" id="to" class="form-control" placeholder="Enter your Signature Key" required>
+<br>
+
+<button class="btn btn-primary btn-round" type="submit" role="btn"value="submit" onclick="window.location.href='{{ url_for( 'blog.home') }}';">Submit</button>
+    
+
   </div>
 </div>
 </div>
