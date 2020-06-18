@@ -1,0 +1,24 @@
+User 
+	id
+	Name 
+	Email Id
+	Password
+	signature_path
+	type
+
+Application_data
+	Id
+	applicant_name
+	created on
+	subject
+	body
+
+Signatory
+	id
+	letter_id
+	signame
+	designation
+	email_id
+	institute
+	gender
+	status [Signed, Not signed]

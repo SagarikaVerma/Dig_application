@@ -7,11 +7,12 @@ from dig_sig.auth import login_required
 from dig_sig.db import get_db
 from dig_sig.en_de import encrypt_image, decrypt_image
 import os
+from dig_sig.model import mode1_pred
 
 # UPLOAD_FOLDER = "\uploads"
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
-
+#sub_obj = SubjectPred()
 bp = Blueprint('blog', __name__)
 
 @bp.route('/home')
@@ -34,7 +35,11 @@ def create():
     if request.method == 'POST':
         to=request.form['to']
         body = request.form['body']
+        designation = request.form.get('desi', False)
+        institute_name = request.form.get('insti')
         error = None
+        subject = mode1_pred(body)
+        print(subject)
         if not to:
             error='to is required'
        
@@ -43,19 +48,19 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO application_data (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
-                (to, body, g.user['id'])
+                'INSERT INTO application_data (title, body, author_id, subject)'
+                ' VALUES (?, ?, ?,?)',
+                (to, body, g.user['id'], subject)
             )
             db.commit()
-            return redirect(url_for('blog.index'))
+            #return redirect(url_for('blog.subjectP'))
 
     return render_template('blog/create.html')
 
 
 def get_post(id, check_author=True):
     post = get_db().execute(
-        'SELECT p.id, title, body, created, author_id, username'
+        'SELECT p.id, body, created, author_id, username, subject'
         ' FROM application_data p JOIN user u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
@@ -87,9 +92,9 @@ def update(id):
         else:
             db = get_db()
             db.execute(
-                'UPDATE application_data SET title = ?, body = ?'
+                'UPDATE application_data SET subject = ?'
                 ' WHERE id = ?',
-                (title, body, id)
+                (subject, id)
             )
             db.commit()
             return redirect(url_for('blog.index'))
@@ -101,8 +106,10 @@ def update(id):
 @login_required
 def view(id):
     post = get_post(id)
-    
-
+    if request.method =='POST':
+        key=request.form['key']
+        decrypt_image(key)
+        flash("The signature has been validated")
     return render_template('blog/view.html', post=post)
 
 @bp.route('/uploader', methods = ['GET', 'POST'])
@@ -168,3 +175,26 @@ def home_sign():
 @bp.route('/index_sign',methods=('GET','POST'))
 def index_sign():
     return render_template('blog/index_sign.html')
+
+
+@bp.route("/upload-image", methods=["GET", "POST"])
+def upload_image():
+    os.chdir("D:\\Dig_application\\uploads") 
+    if request.method == "POST":
+
+        if request.files:
+
+            image = request.files["image"]
+
+            url = image.save(image.filename)
+            #print(url)
+            key=encrypt_image("D:/Dig_application/uploads/signature.png")
+            print("Image saved")
+            print(key)
+
+    return render_template("auth/login.html")
+
+@bp.route('/<int:id>/subjectP', methods=('GET', 'POST'))
+def subjectP(id):
+    post = get_post(id)
+    return render_template('blog/subject.html', post=post)

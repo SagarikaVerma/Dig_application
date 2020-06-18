@@ -19,20 +19,20 @@
         <label style="color:#00659c;" for="t">To </label>
         <br>
         <br>
-        <label style="color:#00659c;" for="t">Head of Department</label>
+        <label style="color:#00659c;" for="t">{{ request.form['designation'] or post['designation'] }}</label>
           <br>
         <br>
-       <label style="color:#00659c;" for="date">Date </label>
+       <label style="color:#00659c;" for="date">Date :- {{ request.form['created'] or post['created'] }}</label>
           <br>
         <br>
-        <label style="color:#00659c;" for="body">Subject </label>
+        <label style="color:#00659c;" for="body">Subject :- {{ request.form['subject'] or post['subject'] }}</label>
         <br>
         <br>
         <label style="color:#00659c;" name="data" id="1">{{ request.form['body'] or post['body'] }}</label>
        <br>
        <br> 
        
-<input type="text" name="to" id="to" class="form-control" placeholder="Enter your Signature Key" required>
+<input type="text" name="key" id="key" class="form-control" placeholder="Enter your Signature Key" required>
 <br>
 
 <button class="btn btn-primary btn-round" type="submit" role="btn"value="submit" onclick="window.location.href='{{ url_for( 'blog.home') }}';">Submit</button>

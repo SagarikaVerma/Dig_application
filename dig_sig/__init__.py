@@ -11,7 +11,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'dig_sig.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'dig_sig.sqlite'), 
     )
     
 
@@ -47,6 +47,9 @@ def create_app(test_config=None):
 
     from . import en_de
     app.register_blueprint(en_de.bp)
+
+    from . import model
+    app.register_blueprint(model.bp)
     return app
 
 

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- styles -->
+  <style type="text/css">
+    
+  </style>
+</header>
+
+{% endblock %}
+{% block content %}
+  <form method="post">
+    <div class="container" align="center">
+    <div class="col-lg-9 col-sm-11">
+      <div class="container" align="center">
+    <p style="color:#00659c;font-size:30px;font-family:verdana;"><b>Suject Prediction</b></p>
+  </div>
+  <div class="container">
+    <div class="card">
+     <div class="card-body">
+       <label style="color:#00659c;" name="Body">{{request.form['body'] or post['body']}}</label>
+        <br>
+        <h2>The subject predicted:</h2>
+        <h2>{{request.form['body'] or post['subject']}}</h2>
+ </div>
+</div>
+</div>
+</div>
+</div>
+</form>
+{%endblock%}

@@ -39,13 +39,7 @@
                    {% if g.user %}
                  <li class="nav-item"><span>{{ g.user['username'] }}&nbsp;&nbsp;&nbsp;</span>
                    <li><a class="nav-link" href="{{ url_for('auth.logout') }}"><b>Log Out</b></a>
-                      
-                  {% else %}
-                  <li class="nav-item">
-                    <a href="{{ url_for('auth.login') }}" class="nav-link"><b>Login&nbsp;</b></a>
-                  <li class="nav-item">
-                    <a href="{{ url_for('auth.register') }}" class="nav-link"><b>Sign Up&nbsp;</b></a>
-                  {% endif %}
+                   {%endif%}
                 </ul>
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-->

@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from dig_sig.db import get_db
 
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
@@ -67,6 +68,42 @@ def login():
 
     return render_template('auth/login.html')
 
+@bp.route('/register_sign',methods=('GET','POST'))
+def register_sign():
+    if request.method == 'POST':
+        firstname=request.form['firstname']
+        lastname=request.form['lastname']
+        username = request.form['username']
+        password = request.form['password']
+        db = get_db()
+        error = None
+        if not firstname:
+            error ='Firstname is required'
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif db.execute(
+            'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
+            error = 'User {} is already registered.'.format(username)
+
+        if error is None:
+            db.execute(
+                'INSERT INTO s_user (username, password, first_name, last_name, user_type) VALUES (?, ?,?, ?,?)',
+                (username, generate_password_hash(password), firstname, lastname, 'S')
+            )
+            db.commit()
+            return redirect(url_for('auth.login'))
+
+        flash(error)
+
+    return render_template('auth/register_sign.html')
+
+@bp.route('/login_sign',methods=('GET','POST'))
+def login_sign():
+    return render_template('auth/login_sign.html')
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -81,7 +118,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('blog.about'))
 
 
 def login_required(view):
@@ -94,10 +131,3 @@ def login_required(view):
 
     return wrapped_view
 
-@bp.route('/register_sign',methods=('GET','POST'))
-def register_sign():
-    return render_template('auth/register_sign.html')
-
-@bp.route('/login_sign',methods=('GET','POST'))
-def login_sign():
-    return render_template('auth/login_sign.html')

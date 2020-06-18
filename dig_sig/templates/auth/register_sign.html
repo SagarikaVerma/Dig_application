@@ -10,12 +10,13 @@
   <br>
 	<div class="container" align="center"><h3><b>{% block title %}Signatory Register{% endblock %}</b></h3></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </header>
 {% endblock %}
 {% block content %}
-  <form method="post">
+  <form action="/upload-image"  method="post" enctype="multipart/form-data">>
         <div class="container" align="center">
     <div class="col-lg-3 col-sm-4">
       <div class="form-group has-default">
@@ -27,10 +28,23 @@
       <br>
     <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
     <br>
-
     <br>
-    </form>
 
+        
+          <label>Select image</label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="image" id="image">
+            <label class="custom-file-label" for="image">Select image...</label>
+          </div>
+    
+     
+        <button type="submit" class="btn btn-primary">Upload and Submit</button>
+ </form>
+<script type="text/javascript">
+  function key_g() {
+  alert("I am an alert box!");
+}
+</script>
 <!--
     <form id="form1" runat="server" >
     
@@ -68,27 +82,10 @@
     <br>
   -->
 
-    <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
-<p><label for="file" style="cursor: pointer;">Click here to Upload Image</label></p>
-<p><img id="output" width="200" /></p>
 
-<script>
-var loadFile = function(event) {
-  var image = document.getElementById('output');
-  image.src = URL.createObjectURL(event.target.files[0]);
-};
-</script>
-
-<button class="btn btn-primary btn-round" type="submit" role="btn" value="submit">Generate Key</button>
-    
-
-
-
-    <button class="btn btn-primary btn-round" type="submit" role="btn"value="Register" onclick="window.location.href='{{ url_for( 'auth.login_sign') }}';">Register</button>
-    <p><h4>OR</h4></p>
     
       </div>
     </div>
-    <button class="btn btn-primary btn-round" type="submit" role="btn"value="login" onclick="window.location.href='{{ url_for( 'auth.login_sign') }}';">Login</button>
+    <button class="btn btn-primary btn-round" role="btn"value="login" onclick="window.location.href='{{ url_for( 'auth.login_sign') }}';">Login</button>
 </div>
 {% endblock %}
